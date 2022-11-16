@@ -25,7 +25,7 @@ if __name__=="__main__":
     
 
     ### Create autolog 
-    mlflow.tensorflow.autolog(log_models=False)
+    mlflow.tensorflow.autolog(log_models=True)
 
     ### Import dataset of french reviews of Disneyland
     french_reviews = pd.read_csv("https://full-stack-assets.s3.eu-west-3.amazonaws.com/images/M08-DeepLearning/NLP/french_review_clean.csv")
@@ -99,10 +99,12 @@ if __name__=="__main__":
         predictions = model.predict(X_train)
 
         # Log model seperately to have more flexibility on setup 
+        """
         mlflow.keras.log_model(
             keras_model=model,
             artifact_path="Sentiment_detector",
             registered_model_name="Sentiment_detector_RNN",
             signature=infer_signature(french_reviews, predictions)
         )
+        """
         
